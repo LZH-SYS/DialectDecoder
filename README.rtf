@@ -15,6 +15,24 @@ Packages needed:
 	•	librosa
 	•	numpy
 
+How to use the software: (Note, make sure all of your directories/names are correct before running each script)
+
+0. Decide how many classes you want to train on, how many and the type of anomalous classes you want to add in, etc. 
+
+The following you should only have to do once.
+	1.	Have your songs in folders, similar to what is shown in the cut_songs folder. 
+	2.  Update the dialect label to number definitions in BLAH BLAH
+	3.	Generate your metadata and generate/crop the spectrograms for the DialectDecoder by running 0_prep_data.py.
+
+These you’ll do more than once depending on what you’re using the labeling birds game for.
+	4.	Change experiment_name to name your experiment (make sure it’s consistent across all numbered files). 
+	5.	Run 1_train_networks.py which will train the CNN and k-NN for the experiment.
+	6.	Run 2_DialectDecoder.py  and classify the desired number of images.
+	7.	After labeling all (or a subset) of the images, add in the newly classified images and retrain the CNN and k-NN with 3_update_networks.py.
+
+Of course, the above is just the recommended use. Feel free to play around with the files to accommodate your needs.
+
+
 What each script in DialectDecoder does: 
 
 0_prep_data.py — Runs all files in the prep folder that you need to create your spectrograms to train and use DialectDecoder on
@@ -46,21 +64,6 @@ What is in each non-script folder:
 	•	metadata — A place to store all metadata files
 	•	output files — The directory where all of the output files live
 
-How to use the software: (Note, make sure all of your directories/names are correct before running each script)
-
-0. Decide how many classes you want to train on, how many and the type of anomalous classes you want to add in, etc. 
-
-The following you should only have to do once.
-	1.	Have your songs in folders, similar to what is shown in the cut_songs folder. 
-	2.	Generate your metadata and generate/crop the spectrograms for the DialectDecoder by running 0_prep_data.py.
-
-These you’ll do more than once depending on what you’re using the labeling birds game for.
-	3.	Change experiment_name to name your experiment (make sure it’s consistent across all numbered files). 
-	4.	Run 1_train_networks.py which will train the CNN and k-NN for the experiment.
-	5.	Run 2_DialectDecoder.py  and classify the desired number of images.
-	6.	After labeling all (or a subset) of the images, add in the newly classified images and retrain the CNN and k-NN with 3_update_networks.py.
-
-Of course, the above is just the recommended use. Feel free to play around with the files to accommodate your needs.
 
 
 
