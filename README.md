@@ -36,8 +36,8 @@ These you’ll do more than once depending on what you’re using the labeling b
 
 Of course, the above is just the recommended use. Feel free to play around with the files to accommodate your needs.
 
-
-What each script in DialectDecoder does: 
+## Details
+### What each script in DialectDecoder does: 
 
 0_prep_data.py — Runs all files in the prep folder that you need to create your spectrograms to train and use DialectDecoder on
 
@@ -60,7 +60,7 @@ train:
 
 3_update_networks.py — The script that allows you to add in the newly labeled data
 
-What is in each non-script folder:
+### What is in each non-script folder:
 -	__pycache__ — Artifact of running the python code
 -	CNN_Networks — A place to store trained CNN networks.
 -	data — All song data (.wav files) and spectrogram data (.png files)
