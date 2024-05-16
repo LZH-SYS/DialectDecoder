@@ -102,7 +102,7 @@ if os.path.exists(anom_dir):
     pass
 else:
     os.mkdir(anom_dir)
-header = ['flock_path', 'file_name', 'bird_label', 'latitude', 'longitude', 'cnn_label', 'knn_label']
+header = ['dialect_folder', 'file_name', 'bird_label', 'latitude', 'longitude', 'cnn_label', 'knn_label']
 with open(anomaly_csv_name, 'w', encoding='UTF8') as f:
     writer = csv.writer(f)
 ### Write the header
@@ -506,7 +506,7 @@ if finished == True:
         print(resolved_array[i])
         
 ### Write .csv file with anomalies    
-header2 = ['flock_path', 'file_name', 'bird_label', 'latitude', 'longitude', 'cnn_label', 'knn_label', 'human_label', 'date/time', 'labeler']
+header2 = ['dialect_folder', 'file_name', 'bird_label', 'latitude', 'longitude', 'cnn_label', 'knn_label', 'human_label', 'date/time', 'labeler']
 with open(classified_csv_name, 'w', encoding='UTF8') as f:
     writer = csv.writer(f)
 ### Write the header
