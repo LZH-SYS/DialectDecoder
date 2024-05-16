@@ -42,7 +42,7 @@ def make_knn_metadata(rootdir, metadata, csv_path, exp_name, current_direc):
         pass
     else:
         os.mkdir(meta_dir)
-    header = ['flock_year', 'file_name', 'bird_label', 'latitude', 'longitude']
+    header = ['flock_folder', 'file_name', 'bird_label', 'latitude', 'longitude']
     with open(csv_path, 'w', encoding='UTF8') as f:
         writer = csv.writer(f)
     # write the header
@@ -55,7 +55,7 @@ def make_knn_metadata(rootdir, metadata, csv_path, exp_name, current_direc):
 def make_knn(loc_data, save_direc, knn_name):
     loc_data = loc_data.dropna(axis = 0)
     ### Make the dataset
-    X = loc_data.drop(['bird_label','flock_year', 'file_name'], axis=1)
+    X = loc_data.drop(['bird_label','flock_folder', 'file_name'], axis=1)
     X = X.values
     y = loc_data['bird_label']
     y = y.values
