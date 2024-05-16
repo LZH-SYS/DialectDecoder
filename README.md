@@ -15,7 +15,7 @@ Hello! Thank you for your interest in DialectDecoder. Here is an overview of how
 ## Getting Started
 Input Files: 
 - A selection of songs grouped by dialect label folders that you want to train on. See https://github.com/GrahamDB/WCS_Song_WAV_data repository for an example of how the songs we trained on are organized and sorted.
-- A metadata sheet with 5 columns: file path containing the labeled folder, file name, bird label (a number corresponding to the dialect label), latitude, and longitude of where the song was recorded. See DialectDecoder/metadata for an example metadata sheet.
+- A metadata sheet with 5 columns: file path containing the labeled folder (`dialect_folder'), file name ('file_name'), bird label ('bird_label') (a number corresponding to the dialect label), latitude ('latitude'), and longitude ('longitude') of where the song was recorded. See DialectDecoder/metadata for an example metadata sheet.
 
 
 Using the software (Note, make sure all of your directories/names are correct before running each script)
