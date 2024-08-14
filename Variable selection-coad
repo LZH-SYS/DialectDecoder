@@ -1,0 +1,40 @@
+HJY<-read_excel("Remote sensing Variables.xls")
+library(Boruta)
+cor(HJY)
+set.seed(123)
+boruta.train <- Boruta(AGB~., data =train, doTrace =5)
+print(boruta.train)
+boruta.train$finalDecision
+library(dplyr)
+boruta.imp <- function(x){
+  imp <- reshape2::melt(x$ImpHistory, na.rm=T)[,-1]
+  colnames(imp) <- c("Variable","Importance")
+  imp <- imp[is.finite(imp$Importance),]
+  variableGrp <- data.frame(Variable=names(x$finalDecision), 
+                            finalDecision=x$finalDecision)
+  showGrp <- data.frame(Variable=c("shadowMax", "shadowMean", "shadowMin"),
+                        finalDecision=c("shadowMax", "shadowMean", "shadowMin"))
+  variableGrp <- rbind(variableGrp, showGrp)
+  boruta.variable.imp <- merge(imp, variableGrp, all.x=T)
+  sortedVariable <- boruta.variable.imp %>% group_by(Variable) %>% 
+    summarise(median=median(Importance)) %>% arrange(median)
+  sortedVariable <- as.vector(sortedVariable$Variable)
+  boruta.variable.imp$Variable <- factor(boruta.variable.imp$Variable, levels=sortedVariable)
+  invisible(boruta.variable.imp)
+}
+boruta.variable.imp <- boruta.imp(boruta.train)
+library(ggplot2)
+library(ggbeeswarm)
+install.packages("ggthemes")
+library(ggthemes)
+boruta.variable.imp<-data.frame(boruta.variable.imp$Variable,boruta.variable.imp$Importance,boruta.variable.imp$finalDecision)
+head(boruta.variable.imp)
+write.table(boruta.variable.imp,"ZXL.txt")
+boruta.variable.impv<-read_excel("C:/Users/h1878/Desktop/CCC.xls")
+PP<-read_excel("C:/Users/h1878/Desktop/JM/BLZYX.xls")
+A<-ggplot(data=PP,aes(x =GP,y=VA,fill=CP))+geom_boxplot(aes(fill =GP))+theme_bw()+
+  theme(axis.text.x = element_text(size =8, family = "serif", face = "bold", vjust = 0.7, hjust = 0.7, angle = 45))+ 
+  theme(text = element_text(size =8))+ 
+  theme(axis.text = element_text(size =8))+theme(text=element_text(family="serif"))+
+  theme(legend.position = 'none')+labs(y=expression(italic(`variable Importance`)))+
+  theme(panel.border = element_rect(fill=NA,color="black", size=0.8, linetype="solid"))+scale_fill_manual(values =COL)
