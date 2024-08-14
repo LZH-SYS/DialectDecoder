@@ -1,0 +1,11 @@
+########################
+library(caret)
+controlD<- trainControl(method="cv",number =10,search = "grid")
+modelRF<-train(biomass~.,data =Modeling factor,method='rf',
+             trControl=controlD)
+model
+Y<-predict(modelRF,newdata =newdata)
+modelXGB<-train(biomass~.,data =Modeling factor,method='xgbDART',
+             trControl=controlD)
+modelXGB
+Y2<-predict(modelXGB,newdata =newdata)
